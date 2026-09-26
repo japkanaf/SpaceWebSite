@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+/* Design tokens: the only source of colour, type, radius, shadow and easing values. */
+@theme {
+  --color-ivory: #faf8f4;
+  --color-paper: #ffffff;
+  --color-sand: #f2eee7;
+  --color-navy-950: #0a1a31;
+  --color-navy-900: #0f2544;
+  --color-navy-700: #2a4468;
+  --color-teal-600: #1e8c8a;
+  --color-teal-500: #2ba5a2;
+  --color-teal-50: #e8f5f4;
+  --color-ink: #13233b;
+  --color-muted: #5b6778;
+  --color-line: #e5e0d7;
+  --color-line-dark: rgb(255 255 255 / 0.12);
+  --color-danger: #b42318;
+
+  --text-display-xl: clamp(2.5rem, 1.6rem + 3.6vw, 4.75rem);
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-lg: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.015em;
+  --text-display-md: clamp(1.625rem, 1.3rem + 1.2vw, 2.375rem);
+  --text-display-md--line-height: 1.15;
+  --text-display-md--letter-spacing: -0.01em;
+  --text-title: clamp(1.1875rem, 1.1rem + 0.35vw, 1.4375rem);
+  --text-title--line-height: 1.3;
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.14em;
+
+  --radius-*: initial;
+  --radius-control: 14px;
+  --radius-card: 24px;
+  --radius-media: 32px;
+  --radius-pill: 9999px;
+
+  --shadow-soft: 0 1px 2px rgb(10 26 49 / 0.04), 0 8px 24px rgb(10 26 49 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(10 26 49 / 0.05), 0 18px 40px rgb(10 26 49 / 0.1);
+  --shadow-float: 0 10px 30px rgb(10 26 49 / 0.12);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --container-page: 80rem;
+  --container-wide: 90rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-noto-serif-display), Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: var(--header-height, 5rem);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-teal-50);
+    color: var(--color-navy-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-teal-600);
+    outline-offset: 3px;
+  }
+
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.55;
+  }
+}
+
+/* Hide native scrollbars on horizontal rails while keeping them scrollable. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* The only two gradients on the page: hero and booking call to action tints. */
+@utility bg-hero-tint {
+  background-image:
+    radial-gradient(55% 60% at 88% 8%, rgb(43 165 162 / 0.09), transparent 70%),
+    radial-gradient(45% 50% at 0% 100%, rgb(15 37 68 / 0.05), transparent 70%);
+}
+
+@utility bg-cta-tint {
+  background-image:
+    radial-gradient(70% 90% at 100% 0%, rgb(43 165 162 / 0.22), transparent 60%),
+    radial-gradient(60% 80% at 0% 100%, rgb(255 255 255 / 0.05), transparent 60%);
+}
+
+/* Demonstration "before" treatment derived from the "after" photo. */
+@utility before-tone {
+  filter: saturate(0.7) sepia(0.32) brightness(0.92) contrast(0.94);
+}
+
+/* Calmer map colours that sit with the ivory and navy palette. */
+@utility map-tone {
+  filter: grayscale(0.35) saturate(0.85) contrast(1.02);
+}
