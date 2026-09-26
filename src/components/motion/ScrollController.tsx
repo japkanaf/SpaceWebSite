@@ -19,22 +19,24 @@ export function scrollToTop(): void {
   window.history.replaceState(null, "", window.location.pathname + window.location.search);
 }
 
+const FOCUSABLE = "a[href], button, input, select, textarea, [tabindex]";
+
 /**
- * Smooth-scrolls to a section below the sticky header, updates the hash without a
- * history entry, and moves keyboard focus to the section heading.
+ * Smooth-scrolls to an element below the sticky header, updates the hash without a
+ * history entry, and moves keyboard focus to the element's heading.
  */
 export function scrollToSection(id: string): void {
   if (typeof window === "undefined") return;
   const section = document.getElementById(id);
   if (!section) return;
 
-  const top = section.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+  const top = section.getBoundingClientRect().top + window.scrollY - getHeaderOffset() - 8;
   window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion() ? "auto" : "smooth" });
   window.history.replaceState(null, "", `#${id}`);
 
-  const heading = section.querySelector<HTMLElement>("h1, h2") ?? section;
-  if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
-  heading.focus({ preventScroll: true });
+  const target = section.querySelector<HTMLElement>("h1, h2, h3") ?? section;
+  if (!target.matches(FOCUSABLE)) target.setAttribute("tabindex", "-1");
+  target.focus({ preventScroll: true });
 }
 
 /** Intercepts same-page anchor clicks so every link gets the controlled scroll. */

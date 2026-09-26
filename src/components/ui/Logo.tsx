@@ -14,10 +14,10 @@ export function Logo({
 }) {
   const dark = tone === "dark";
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <LogoMark className={cn("size-8 shrink-0", dark ? "text-teal-500" : "text-teal-600")} />
+    <span className={cn("inline-flex items-center gap-2 sm:gap-2.5", className)}>
+      <LogoMark className={cn("size-7 shrink-0 sm:size-8", dark ? "text-teal-500" : "text-teal-600")} />
       <span className={cn("flex items-baseline leading-none", dark ? "text-ivory" : "text-navy-900")}>
-        <span className="font-display text-xl tracking-tight">{primary}</span>
+        <span className="font-display text-lg tracking-tight sm:text-xl">{primary}</span>
         <span className="ml-0.5 font-sans text-xs font-bold tracking-widest">{secondary}</span>
       </span>
     </span>
