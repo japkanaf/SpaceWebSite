@@ -50,7 +50,6 @@
 
   --container-page: 80rem;
   --container-wide: 90rem;
-  --container-prose: 42rem;
 }
 
 @theme inline {
@@ -108,6 +107,11 @@
   button:disabled {
     cursor: default;
   }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.55;
+  }
 }
 
 /* Hide native scrollbars on horizontal rails while keeping them scrollable. */
@@ -134,4 +138,9 @@
 /* Demonstration "before" treatment derived from the "after" photo. */
 @utility before-tone {
   filter: saturate(0.7) sepia(0.32) brightness(0.92) contrast(0.94);
+}
+
+/* Calmer map colours that sit with the ivory and navy palette. */
+@utility map-tone {
+  filter: grayscale(0.35) saturate(0.85) contrast(1.02);
 }
